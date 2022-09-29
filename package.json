@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "django": "ng build --output-path ../magote-api/static --watch --output-hashing none"
   },
   "private": true,
   "dependencies": {
