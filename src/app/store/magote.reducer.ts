@@ -1,30 +1,10 @@
-import { state } from '@angular/animations';
-import { createReducer, createSelector, on } from '@ngrx/store';
-import { increment, decrement, reset } from './magote.actions';
+import { ActionReducerMap, createReducer, on } from '@ngrx/store';
+import { loginReducer, LoginState } from './login/login.reducer';
 
-export interface CounterState {
-  value: number;
+export interface MagoteState {
+  login: LoginState;
 }
 
-export const initialState: CounterState = {
-  value: 0,
+export const AppReducer: ActionReducerMap<MagoteState> = {
+  login: loginReducer,
 };
-
-export const getValue = (state: CounterState) => state.value;
-
-export const counterReducer = createReducer(
-  initialState,
-  on(increment, (state) => {
-    return {
-      ...state,
-      value: state.value + 1,
-    };
-  }),
-  on(decrement, (state) => {
-    return {
-      ...state,
-      value: state.value - 1,
-    };
-  }),
-  on(reset, (state) => initialState)
-);
