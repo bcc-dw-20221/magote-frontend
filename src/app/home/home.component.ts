@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as fromMagote from '../store/magote.reducer';
-import * as fromLoginSelectors from '../store/login/login.selectors';
-import * as fromLoginActions from '../store/login/login.actions';
+
+import * as fromAuthSelectors from '../store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-home',
@@ -11,15 +10,14 @@ import * as fromLoginActions from '../store/login/login.actions';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  token: Observable<string>;
+  // Para fins de agilidade, o home exibirá tokens, caso existam, no seu template
+  access: Observable<string> = new Observable<string>();
+  refresh: Observable<string> = new Observable<string>();
 
-  constructor(private store: Store<fromMagote.MagoteState>) {
-    this.token = this.store.select(fromLoginSelectors.selectAccessToken);
+  constructor(private store: Store) {
+    this.access = this.store.select(fromAuthSelectors.selectAccessToken);
+    this.refresh = this.store.select(fromAuthSelectors.selectRefreshToken);
   }
 
-  ngOnInit(): void {
-    this.store.dispatch(
-      fromLoginActions.login({ username: 'teste', password: '123456' })
-    );
-  }
+  ngOnInit(): void {}
 }
