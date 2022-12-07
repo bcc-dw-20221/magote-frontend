@@ -7,20 +7,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
-import { StoreModule } from '@ngrx/store';
-import { AppReducer } from './store/magote.reducer';
-import { EffectsModule } from '@ngrx/effects';
-import { LoginEffects } from './store/login/login.effects';
-
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    StoreModule.forRoot(AppReducer),
-    EffectsModule.forRoot([LoginEffects]),
-  ],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
